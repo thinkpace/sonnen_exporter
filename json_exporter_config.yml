@@ -1,0 +1,260 @@
+---
+modules:
+
+  sonnen_v2_status:
+    metrics:
+    - name: sonnen_v2_status_backupbuffer_percent
+      path: '{.BackupBuffer}'
+      help: 'Backup-buffer in percentage that is set on the system. [%, percentage]; Integer'
+    - name: sonnen_v2_status_batterycharging_bool
+      path: '{.BatteryCharging}'
+      help: 'Boolean that indicates the charge status. True if charging; Boolean'
+    - name: sonnen_v2_status_batterydischarging_bool
+      path: '{.BatteryDischarging}'
+      help: 'Boolean that indicates the discharge status. True if discharging; Boolean'
+    - name: sonnen_v2_status_consumption_average_watt
+      path: '{.Consumption_Avg}'
+      help: 'House consumption in watts, average over the last 60s [W, watt]; Integer'
+    - name: sonnen_v2_status_consumption_watt
+      path: '{.Consumption_W}'
+      help: 'House consumption in watts, direct measurement [W, watt]; Integer'
+    - name: sonnen_v2_status_fac_hertz
+      path: '{.Fac}'
+      help: 'AC frequency in hertz [Hz, hertz]; Float'
+    - name: sonnen_v2_status_flowconsumptionbattery_bool
+      path: '{.FlowConsumptionBattery}'
+      help: 'Boolean that indicates the energy flow at the installation site. True if battery feeds the consumption; Boolean'
+    - name: sonnen_v2_status_flowconsumptiongrid_bool
+      path: '{.FlowConsumptionGrid}'
+      help: 'Boolean that indicates the energy flow at the installation site. True if grid feeds the consumption; Boolean'
+    - name: sonnen_v2_status_flowconsumptionproduction_bool
+      path: '{.FlowConsumptionProduction}'
+      help: 'Boolean that indicates the energy flow at the installation site. True if production feeds the consumption; Boolean'
+    - name: sonnen_v2_status_flowgridbattery_bool
+      path: '{.FlowGridBattery}'
+      help: 'Boolean that indicates the energy flow at the installation site. True if battery is charging from grid; Boolean'
+    - name: sonnen_v2_status_flowproductionbattery_bool
+      path: '{.FlowProductionBattery}'
+      help: 'Boolean that indicates the energy flow at the installation site. True if production is charging the battery; Boolean'
+    - name: sonnen_v2_status_flowproductiongrid_bool
+      path: '{.FlowProductionGrid}'
+      help: 'Boolean that indicates the energy flow at the installation site. True if production feeds into the grid; Boolean'
+    - name: sonnen_v2_status_gridfeedin_watt
+      path: '{.GridFeedIn_W}'
+      help: 'Grid Feed in negative is consumption and positive is feed in [W, watt]; Integer'
+    - name: sonnen_v2_status_issysteminstalled
+      path: '{.IsSystemInstalled}'
+      help: 'System is installed or not; Integer'
+    - name: sonnen_v2_status_operatingmode
+      path: '{.OperatingMode}'
+      help: 'Operating mode that is set on the system: - 1: Manual charging or discharging via API - 2: Automatic Self Consumption. Default; Integer'
+    - name: sonnen_v2_status_pac_total_watt
+      path: '{.Pac_total_W}'
+      help: 'AC Power greater than ZERO is discharging Inverter AC Power less than ZERO is charging [W, watt]; Singed Integer'
+    - name: sonnen_v2_status_production_watt
+      path: '{.Production_W}'
+      help: 'PV production in watts [W, watt]; Integer'
+    - name: sonnen_v2_status_rsoc_percent
+      path: '{.RSOC}'
+      help: 'Relative state of charge [%, percentage]; Integer'
+    - name: sonnen_v2_status_remainingcapacity_watthours
+      path: '{.RemainingCapacity_Wh}'
+      help: 'Remaining capacity based on RSOC [Wh]; Integer'
+    - name: sonnen_v2_status_usoc_percent
+      path: '{.USOC}'
+      help: 'User state of charge [%, percentage]; Integer'
+    - name: sonnen_v2_status_uac_volt
+      path: '{.Uac}'
+      help: 'AC voltage in volts [V, volt]; Integer'
+    - name: sonnen_v2_status_ubat_volt
+      path: '{.Ubat}'
+      help: 'Battery voltage in volts [V, volt]; Integer'
+    - name: sonnen_v2_status_dischargenotallowed_bool
+      path: '{.dischargeNotAllowed}'
+      help: 'Boolean that indicates the discharge status. True if no discharge allowed, based on battery maintenance; Boolean'
+    - name: sonnen_v2_status_generatorautostart_bool
+      path: '{.generator_autostart}'
+      help: 'Boolean that indicates the autostart setting of the generator.; Boolean'
+
+  sonnen_v2_battery:
+    headers:
+      Auth-Token: 'REPLACETHISWITHYOURAUTHTOKEN'
+    metrics:
+    - name: sonnen_v2_battery_balancechargerequest_bool
+      path: '{.balancechargerequest}'
+      help: 'Module request for balance charge, 0 for false, 1 for true; Boolean'
+    - name: sonnen_v2_battery_chargecurrentlimit_ampere
+      path: '{.chargecurrentlimit}'
+      help: 'Module charge current limit [A]; Float'
+    - name: sonnen_v2_battery_cyclecount
+      path: '{.cyclecount}'
+      help: 'Number of charge/discharge cycles; Integer'
+    - name: sonnen_v2_battery_dischargecurrentlimit_ampere
+      path: '{.dischargecurrentlimit}'
+      help: 'Module discharge current limit [A]; Float'
+    - name: sonnen_v2_battery_fullchargecapacity_amperehour
+      path: '{.fullchargecapacity}'
+      help: 'Fullcharge capacity [Ah]; Float'
+    - name: sonnen_v2_battery_maximumcelltemperature_degree
+      path: '{.maximumcelltemperature}'
+      help: 'Max cell temperature [°C]; Float'
+    - name: sonnen_v2_battery_maximumcellvoltage_volt
+      path: '{.maximumcellvoltage}'
+      help: 'Max cell voltage [V]; Float'
+    - name: sonnen_v2_battery_maximumcellvoltagenum
+      path: '{.maximumcellvoltagenum}'
+      help: '-; Enum'
+    - name: sonnen_v2_battery_maximummodulecurrent_ampere
+      path: '{.maximummodulecurrent}'
+      help: 'Max module DC current [A]; Float'
+    - name: sonnen_v2_battery_maximummoduledcvoltage_volt
+      path: '{.maximummoduledcvoltage}'
+      help: 'Max module DC voltage [V]; Float'
+    - name: sonnen_v2_battery_maximummoduletemperature_degree
+      path: '{.maximummoduletemperature}'
+      help: 'Max module DC temperature [°C]; Float'
+    - name: sonnen_v2_battery_minimumcelltemperature_degree
+      path: '{.minimumcelltemperature}'
+      help: 'Min cell temperature [°C]; Float'
+    - name: sonnen_v2_battery_minimumcellvoltage_volt
+      path: '{.minimumcellvoltage}'
+      help: 'Min cell voltage [V]; Float'
+    - name: sonnen_v2_battery_minimumcellvoltagenum
+      path: '{.minimumcellvoltagenum}'
+      help: '-; Enum'
+    - name: sonnen_v2_battery_minimummodulecurrent_ampere
+      path: '{.minimummodulecurrent}'
+      help: 'Min module current [A]; Float'
+    - name: sonnen_v2_battery_minimummoduledcvoltage_volt
+      path: '{.minimummoduledcvoltage}'
+      help: 'Min module voltage [V]; Float'
+    - name: sonnen_v2_battery_minimummoduletemperature_degree
+      path: '{.minimummoduletemperature}'
+      help: 'Min module temperature [°C]; Float'
+    - name: sonnen_v2_battery_relativestateofcharge_percent
+      path: '{.relativestateofcharge}'
+      help: 'Relative state of charge [%]; Float'
+    - name: sonnen_v2_battery_remainingcapacity_amperehour
+      path: '{.remainingcapacity}'
+      help: 'Remaining capacity in Ah [Ah]; Float'
+    - name: sonnen_v2_battery_systemalarm_bool
+      path: '{.systemalarm}'
+      help: 'System alarm, 0 for false, 1 for true; Boolean'
+    - name: sonnen_v2_battery_systemcurrent_ampere
+      path: '{.systemcurrent}'
+      help: 'System current [A]; Float'
+    - name: sonnen_v2_battery_systemdcvoltage_volt
+      path: '{.systemdcvoltage}'
+      help: 'System battery voltage [V]; Float'
+    - name: sonnen_v2_battery_systemstatus
+      path: '{.systemstatus}'
+      help: 'System status; Integer'
+    - name: sonnen_v2_battery_systemtime_bool
+      path: '{.systemtime}'
+      help: 'System time; Boolean'
+    - name: sonnen_v2_battery_systemwarning_bool
+      path: '{.systemwarning}'
+      help: 'System warning, 0 for false, 1 for true; Boolean'
+
+  sonnen_v2_inverter:
+    headers:
+      Auth-Token: 'REPLACETHISWITHYOURAUTHTOKEN'
+    metrics:
+    - name: sonnen_v2_inverter_far_hertz
+      path: '{.fac}'
+      help: 'AC frequency [Hz, hertz]; Float'
+    - name: sonnen_v2_inverter_iac_total_ampere
+      path: '{.iac_total}'
+      help: 'AC current [A, ampere]; Float'
+    - name: sonnen_v2_inverter_ibat_ampere
+      path: '{.ibat}'
+      help: 'Battery current [A, ampere]; Float'
+    - name: sonnen_v2_inverter_ipv_ampere
+      path: '{.ipv}'
+      help: 'PV current [A, ampere]; Float'
+    - name: sonnen_v2_inverter_pacmicrogrid_watt
+      path: '{.pac_microgrid}'
+      help: 'AC microgrid power: greater than ZERO is discharging, less than ZERO is charging [W, watt]; Float'
+    - name: sonnen_v2_inverter_pac_total_watt
+      path: '{.pac_total}'
+      help: 'AC power: greater than ZERO is discharging, less than ZERO is charging [W, watt]; Float'
+    - name: sonnen_v2_inverter_pbat_watt
+      path: '{.pbat}'
+      help: 'DC Power [W, watt]; Float'
+    - name: sonnen_v2_inverter_phi
+      path: '{.phi}'
+      help: 'Power factor cos φ; Float'
+    - name: sonnen_v2_inverter_ppv_watt
+      path: '{.ppv}'
+      help: 'PV production in watts [W, watt]; Float'
+    - name: sonnen_v2_inverter_sac_total_voltampere
+      path: '{.sac_total}'
+      help: 'Output of apparent power [VA, volt-ampere]; Float'
+    - name: sonnen_v2_inverter_tmax_degree
+      path: '{.tmax}'
+      help: 'Inverter Temperature [°C]; Float'
+    - name: sonnen_v2_inverter_uac_volt
+      path: '{.uac}'
+      help: 'AC voltage [V, volt]; Float'
+    - name: sonnen_v2_inverter_ubat_volt
+      path: '{.ubat}'
+      help: 'Battery voltage [V, volt]; Float'
+    - name: sonnen_v2_inverter_upv_volt
+      path: '{.upv}'
+      help: 'PV voltage [V, volt]; Float'
+
+  sonnen_v2_configurations:
+    headers:
+      Auth-Token: 'REPLACETHISWITHYOURAUTHTOKEN'
+    metrics:
+    - name: sonnen_v2_configurations_cmmarketingmodulecapacity
+      path: '{.CM_MarketingModuleCapacity}'
+      help: 'Config value for CM_MarketingModuleCapacity'
+    - name: sonnen_v2_configurations_emoperatingmode
+      path: '{.EM_OperatingMode}'
+      help: 'Config value for EM_OperatingMode'
+    - name: sonnen_v2_configurations_emprognosischarging
+      path: '{.EM_Prognosis_Charging}'
+      help: 'Config value for EM_Prognosis_Charging'
+    - name: sonnen_v2_configurations_emreenablemicrogrid
+      path: '{.EM_RE_ENABLE_MICROGRID}'
+      help: 'Config value for EM_RE_ENABLE_MICROGRID'
+    - name: sonnen_v2_configurations_emuserinputtimeone
+      path: '{.EM_USER_INPUT_TIME_ONE}'
+      help: 'Config value for EM_USER_INPUT_TIME_ONE'
+    - name: sonnen_v2_configurations_emuserinputtimethree
+      path: '{.EM_USER_INPUT_TIME_THREE}'
+      help: 'Config value for EM_USER_INPUT_TIME_THREE'
+    - name: sonnen_v2_configurations_emuserinputtimetwo
+      path: '{.EM_USER_INPUT_TIME_TWO}'
+      help: 'Config value for EM_USER_INPUT_TIME_TWO'
+    - name: sonnen_v2_configurations_emusoc
+      path: '{.EM_USOC}'
+      help: 'Config value for EM_USOC'
+    - name: sonnen_v2_configurations_emusgenpowersetpoint
+      path: '{.EM_US_GEN_POWER_SET_POINT}'
+      help: 'Config value for EM_US_GEN_POWER_SET_POINT'
+    - name: sonnen_v2_configurations_icbatterymodules
+      path: '{.IC_BatteryModules}'
+      help: 'Config value for IC_BatteryModules'
+    - name: sonnen_v2_configurations_icinvertermaxpowerw
+      path: '{.IC_InverterMaxPower_w}'
+      help: 'Config value for IC_InverterMaxPower_w'
+    - name: sonnen_v2_configurations_nvmpfcfixedcosphi
+      path: '{.NVM_PfcFixedCosPhi}'
+      help: 'Config value for NVM_PfcFixedCosPhi'
+    - name: sonnen_v2_configurations_nvmpfcisfixedcosphiactive
+      path: '{.NVM_PfcIsFixedCosPhiActive}'
+      help: 'Config value for NVM_PfcIsFixedCosPhiActive'
+    - name: sonnen_v2_configurations_nvmpfcisfixedcosphilagging
+      path: '{.NVM_PfcIsFixedCosPhiLagging}'
+      help: 'Config value for NVM_PfcIsFixedCosPhiLagging'
+    - name: sonnen_v2_configurations_shheateroperatingmode
+      path: '{.SH_HeaterOperatingMode}'
+      help: 'Config value for SH_HeaterOperatingMode'
+    - name: sonnen_v2_configurations_shheatertemperaturemax
+      path: '{.SH_HeaterTemperatureMax}'
+      help: 'Config value for SH_HeaterTemperatureMax'
+    - name: sonnen_v2_configurations_shheatertemperaturemin
+      path: '{.SH_HeaterTemperatureMin}'
+      help: 'Config value for SH_HeaterTemperatureMin'

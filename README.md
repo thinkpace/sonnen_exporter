@@ -6,32 +6,76 @@ It uses API V2 of local battery, docs are available at [your local battery](http
 
 # Disclaimer
 
-I'm not involved in any way in Sonnen GmbH and this repository is not an official Sonnen GmbH project. This is just a hobby project of some nerd. Keep in mind that there is no encryption or authentication/authorization included, so I suggest to run this only in a protected environment (like your LAN ... hopefully 😉) and don't publish this service to the Internet. If your Prometheus is not running in the same environment as this project, please use some kind of tunnel technology like VPN.
+I'm not involved in any way in Sonnen GmbH and this repository is not an official Sonnen GmbH project. This is just a hobby project of some nerd.
 
-# Usage
+Please keep following topics in mind:
+
+* There is no encryption or authentication/authorization included, so I suggest to run this only in a protected environment (like your LAN ... hopefully 😉) and don't publish this service to the Internet. If your Prometheus is not running in the same environment as this project, please use some kind of tunnel technology like VPN.
+* docker-compose.yml is referencing to the latest json_exporter available in Docker Registry. In a commercial environment, this is often seen as an anti pattern because it could lead to unintended updates and broken systems. However, in my specific scenario, I want to refer to the latest available image. If something fails unintended, I need to fix it.
+
+# How to use
 
 Requirements:
 
 * Have a server with Docker installed
-* Have a Sonnen battery which supports API V2
+* Have a Sonnen battery which supports API V2 and have Sonnen battery prepared (see below)
 
-To use sonnen_exporter, clone this repository and open [json_exporter_config.yml](/json_exporter_config.yml). Search for
+## Prepare Sonnen battery
 
-`Auth-Token: 'REPLACETHISWITHYOURAUTHTOKEN'`
+You need an Auth token which can be found at [your local battery Web UI](http://YOURBATTERYIP/dash/software-integration/json-api). Please make sure to enable "Read API" at same page before accessing API. I also suggest to disable "Write API" and test your config using curl.
 
-and insert your Auth token. Please note there are multiple occurances of this line. You can find your specific Auth token at [your local battery Web UI](http://YOURBATTERYIP/dash/software-integration/json-api). Please make sure to enable "Read API" at same page before accessing API. I also suggest to disable "Write API" and test your config using curl.
+## Setup
 
-After that, sonnen_exporter can be started using
+There are two ways to setup this repository:
 
-`docker compose up`
+1. Ansible setup
+1. Manual setup
+
+Please choose one of them.
+
+### Ansible setup
+
+To setup sonnen_exporter using Ansible please ensure to have at least Ansible 2.7 installed at your system. If that's the case, run following commands:
+
+```
+cd /YOUR/REPO/CHECKOUT/PATH/sonnen_exporter.git/ansible
+cp roles/install-sonnen_exporter/vars/main-sample.yml roles/install-sonnen_exporter/vars/main.yml
+```
+
+Open `roles/install-sonnen_exporter/vars/main.yml` in your prefered editor and insert your personal Auth token.
+
+To run this role and install sonnen_exporter at your server, you can use following command:
+
+```
+cd /YOUR/REPO/CHECKOUT/PATH/sonnen_exporter.git/ansible
+ansible -i /PATH/TO/INVENTORY -b YOURSERVERNAME -m ansible.builtin.include_role --args name=install-sonnen_exporter
+```
+
+### Manual setup
+
+To setup sonnen_exporter the manual way, clone this repository and open [json_exporter_config.yml](/json_exporter_config.yml). Search for
+
+```
+Auth-Token: 'REPLACETHISWITHYOURAUTHTOKEN'
+```
+
+and insert your Auth token. Please note there are multiple occurances of this line.
+
+## Start
+
+After setup, sonnen_exporter can be started using
+
+```
+docker compose up
+```
 
 or 
 
-`docker compose up -d` (daemonized)
+```
+docker compose up -d
+```
 
-in repository directory.
-
-# How it works
+in setup directory.
 
 This will start a web service at port 7979. Following APIs can be scraped by Prometheus:
 

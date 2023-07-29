@@ -1,0 +1,4 @@
+---
+sonnen_exporter_path: '/opt/sonnen_exporter'
+sonnen_exporter_port: '7979'
+sonnen_battery_auth_token: 'THISISMYTOKEN'

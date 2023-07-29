@@ -1,5 +1,5 @@
 ---
-- name: Create /opt/sonnen_exporter
+- name: Create installation directory
   file:
     path: '{{ sonnen_exporter_path }}'
     state: directory

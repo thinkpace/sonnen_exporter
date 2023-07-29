@@ -86,6 +86,14 @@ This will start a web service at port 7979. Following APIs can be scraped by Pro
 | Inverter specific data | http://YOURSONNENEXPORTERIP:7979/probe?module=sonnen_v2_inverter&target=http://YOURSONNENBATTERYIP/api/v2/inverter |
 | Configuration data | http://YOURSONNENEXPORTERIP:7979/probe?module=sonnen_v2_configurations&target=http://YOURSONNENBATTERYIP/api/v2/configurations |
 
+## Upgrade
+
+Ansible role is creating a cronjob which updates base image every night. If you installed manually, you can use following cronjob:
+
+```
+0 4 * * * docker compose -f /opt/sonnen_exporter/docker-compose.yml down && docker compose -f /opt/sonnen_exporter/docker-compose.yml pull && docker compose -f /opt/sonnen_exporter/docker-compose.yml up -d
+```
+
 # Further information
 
 For more information please check [prometheus-community/json_exporter](https://github.com/prometheus-community/json_exporter) docs.

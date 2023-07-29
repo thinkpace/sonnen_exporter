@@ -20,3 +20,10 @@
     owner: root
     group: root
     mode: 0664
+- name: Enable daily upgrade of base image
+  ansible.builtin.cron:
+    name: 'Upgrade {{ sonnen_exporter_path }}'
+    user: root
+    hour: 4
+    minute: 0
+    job: 'docker compose -f {{ sonnen_exporter_path }}/docker-compose.yml down && docker compose -f {{ sonnen_exporter_path }}/docker-compose.yml pull && docker compose -f {{ sonnen_exporter_path }}/docker-compose.yml up -d'

@@ -3,7 +3,7 @@ version: '3'
 services:
   sonnen_exporter:
     container_name: sonnen_exporter
-    image: prometheuscommunity/json-exporter
+    image: prometheuscommunity/json-exporter:latest
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -11,4 +11,4 @@ services:
     command:
       - '--config.file=/config.yml'
     ports:
-      - 7979:7979
+      - '7979:7979'

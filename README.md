@@ -4,7 +4,7 @@ sonnen_exporter is a [Prometheus](https://prometheus.io/) [Exporter](https://pro
 
 It uses API V2 of local battery, docs are available at [your local battery](http://YOURBATTERYIP/api/doc.html).
 
-# Disclaimer
+## Disclaimer
 
 I'm not involved in any way in Sonnen GmbH and this repository is not an official Sonnen GmbH project. This is just a hobby project of some nerd.
 
@@ -13,27 +13,18 @@ Please keep following topics in mind:
 * There is no encryption or authentication/authorization included, so I suggest to run this only in a protected environment (like your LAN ... hopefully 😉) and don't publish this service to the Internet. If your Prometheus is not running in the same environment as this project, please use some kind of tunnel technology like VPN.
 * docker-compose.yml is referencing to the latest json_exporter available in Docker Registry. In a commercial environment, this is often seen as an anti pattern because it could lead to unintended updates and broken systems. However, in my specific scenario, I want to refer to the latest available image. If something fails unintended, I need to fix it.
 
-# How to use
+## How to use
 
 Requirements:
 
 * Have a server with Docker installed
 * Have a Sonnen battery which supports API V2 and have Sonnen battery prepared (see below)
 
-## Prepare Sonnen battery
+### Prepare Sonnen battery
 
 You need an Auth token which can be found at [your local battery Web UI](http://YOURBATTERYIP/dash/software-integration/json-api). Please make sure to enable "Read API" at same page before accessing API. I also suggest to disable "Write API" and test your config using curl.
 
 ## Setup
-
-There are two ways to setup this repository:
-
-1. Ansible setup
-1. Manual setup
-
-Please choose one of them.
-
-### Ansible setup
 
 To setup sonnen_exporter using Ansible please ensure to have at least Ansible 2.7 installed at your system. If that's the case, run following commands:
 
@@ -50,16 +41,6 @@ To run this role and install sonnen_exporter at your server, you can use followi
 cd /YOUR/REPO/CHECKOUT/PATH/sonnen_exporter.git/ansible
 ansible -i /PATH/TO/INVENTORY -b YOURSERVERNAME -m ansible.builtin.include_role --args name=install-sonnen_exporter
 ```
-
-### Manual setup
-
-To setup sonnen_exporter the manual way, clone this repository and open [json_exporter_config.yml](/json_exporter_config.yml). Search for
-
-```
-Auth-Token: 'REPLACETHISWITHYOURAUTHTOKEN'
-```
-
-and insert your Auth token. Please note there are multiple occurances of this line.
 
 ## Start
 
@@ -88,17 +69,13 @@ This will start a web service at port 7979. Following APIs can be scraped by Pro
 
 ## Upgrade
 
-Ansible role is creating a cronjob which updates base image every night. If you installed manually, you can use following cronjob:
+Ansible role is creating a cronjob which updates base image every night.
 
-```
-0 4 * * * docker compose -f /opt/sonnen_exporter/docker-compose.yml down && docker compose -f /opt/sonnen_exporter/docker-compose.yml pull && docker compose -f /opt/sonnen_exporter/docker-compose.yml up -d
-```
-
-# Further information
+## Further information
 
 For more information please check [prometheus-community/json_exporter](https://github.com/prometheus-community/json_exporter) docs.
 
-# Prometheus sample config
+## Prometheus sample config
 
 Your prometheus.yml which targets sonnen_exporter could look like this:
 

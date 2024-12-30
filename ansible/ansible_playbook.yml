@@ -1,0 +1,4 @@
+- hosts: prometheus_sonnen_exporter
+  become: true
+  roles:
+    - install-sonnen_exporter
